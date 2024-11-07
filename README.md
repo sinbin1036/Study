@@ -7,3 +7,7 @@
   <pre><code>git fetch
 git pull</code></pre>
 </div>
+<div>
+  <h3>깃허브 커밋하기 전 스테이징하기</h3>
+  <pre><code>git add .</code></pre>
+</div>
