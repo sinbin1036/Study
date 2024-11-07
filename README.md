@@ -4,5 +4,6 @@
 </div>
 <div>
   <p>깃허브 동기화하기</p>
-  <pre><code>git fetch<br>git pull</code></pre>
+  <pre><code>git fetch
+    git pull</code></pre>
 </div>
