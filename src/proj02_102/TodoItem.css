@@ -28,3 +28,9 @@
   border-radius: 5px;
   padding: 5px;
 }
+
+.TodoItem .title_col{
+  flex: 1;
+  text-decoration: none;
+  color: black;
+}

@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './proj02_102/App';
+import App from './proj02_102/App_page';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <App/>
+  <BrowserRouter>
+    <App></App>
+  </BrowserRouter>
 );

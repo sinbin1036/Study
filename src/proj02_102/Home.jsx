@@ -4,7 +4,7 @@ import TodoEditor from "./TodoEditor";
 import TodoList from "./TodoList";
 import "./App.css"
 
-function App(){
+function Home(){
   const [todo, setTodo] = useState([]);
   const idRef = useRef(0);
 
@@ -19,13 +19,25 @@ function App(){
     setTodo([newItem, ...todo]);
     idRef.current += 1;
   }
+  
+  function onUpdate(targetId) {
+    setTodo(todo.map((item)=>
+      item.id === targetId
+    ? {...item,isDone: !item.isDone}
+    : item)
+    )
+  }
+
+  function onDelete(targetId) {
+    setTodo(todo.filter((item)=>item.id !== targetId))
+  }
 
   return(
     <div className="App">
       <Header></Header>
       <TodoEditor onCreate={onCreate}></TodoEditor>
-      <TodoList todo={todo}></TodoList>
+      <TodoList todo={todo} onUpdate={onUpdate} onDelete={onDelete}></TodoList>
     </div>
   )
 }
-export default App;
+export default Home;  
