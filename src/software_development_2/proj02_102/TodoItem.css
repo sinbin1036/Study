@@ -1,0 +1,36 @@
+.TodoItem{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.TodoItem .check_col {
+  width: 20px;
+}
+
+.TodoItem .title_col {
+  flex: 1;
+}
+
+.TodoItem .date_col {
+  font-size: 14px;
+  color: gray;
+}
+
+.TodoItem .btn_col {
+  cursor: pointer;
+  color: gray;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.TodoItem .title_col{
+  flex: 1;
+  text-decoration: none;
+  color: black;
+}
