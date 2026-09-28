@@ -1,0 +1,76 @@
+### Create a new book
+POST http://localhost:8080/api/books
+Accept: application/json
+Authorization: Basic dXNlcjp1c2Vy
+Content-Type: application/json
+
+{
+  "name": "Java Programming",
+  "description": "Learn Java from scratch",
+  "tags": ["java", "programming", "backend"]
+}
+
+### Get all books (paginated, default page=0, size=20)
+GET http://localhost:8080/api/books
+Accept: application/json
+Authorization: Basic dXNlcjp1c2Vy
+
+### Get all books (page 0, size 5)
+GET http://localhost:8080/api/books?page=0&size=5
+Accept: application/json
+Authorization: Basic dXNlcjp1c2Vy
+
+### Get all books (page 1, size 5, sorted by name)
+GET http://localhost:8080/api/books?page=1&size=5&sort=name,asc
+Accept: application/json
+Authorization: Basic dXNlcjp1c2Vy
+
+### Get book by ID
+GET http://localhost:8080/api/books/1
+Accept: application/json
+Authorization: Basic dXNlcjp1c2Vy
+
+### Search books by name
+GET http://localhost:8080/api/books?name=Java
+Accept: application/json
+Authorization: Basic dXNlcjp1c2Vy
+
+### Update book
+PUT http://localhost:8080/api/books/1
+Accept: application/json
+Authorization: Basic dXNlcjp1c2Vy
+Content-Type: application/json
+
+{
+  "name": "Java Programming Updated",
+  "description": "Updated description",
+  "tags": ["java", "updated"]
+}
+
+### Delete book by ID
+DELETE http://localhost:8080/api/books/1
+Authorization: Basic dXNlcjp1c2Vy
+
+### Health check (public - no auth required)
+GET http://localhost:8080/actuator/health
+Accept: application/json
+
+### App info (public - no auth required)
+GET http://localhost:8080/actuator/info
+Accept: application/json
+
+### Metrics (requires auth)
+GET http://localhost:8080/actuator/metrics
+Accept: application/json
+Authorization: Basic dXNlcjp1c2Vy
+
+### Swagger UI (open in browser)
+# http://localhost:8080/swagger-ui.html
+
+### OpenAPI JSON
+GET http://localhost:8080/v3/api-docs
+Accept: application/json
+
+### OpenAPI YAML
+GET http://localhost:8080/v3/api-docs.yaml
+Accept: application/x-yaml
