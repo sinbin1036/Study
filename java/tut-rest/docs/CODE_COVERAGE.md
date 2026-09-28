@@ -296,7 +296,7 @@
   - 호출되는 곳: Jackson 역직렬화(요청 JSON에 `"name"`이 있을 때), `EmployeeController#replaceEmployee`
   - 호출하는 코드: `String#split(" ")`
   - 사용 개념: 배열, 문자열 분리
-  - 주의: 공백이 없으면 `parts[1]`에서 `ArrayIndexOutOfBoundsException` (→ 500), 3단어 이상이면 나머지 손실
+  - 주의: 공백이 없으면 `parts[1]`에서 `ArrayIndexOutOfBoundsException` → JSON 역직렬화 중 예외라 **400 Bad Request** (POST/PUT 모두, 직접 확인함), 3단어 이상이면 나머지 손실
 
 ---
 

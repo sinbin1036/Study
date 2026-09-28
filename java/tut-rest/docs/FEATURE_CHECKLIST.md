@@ -52,13 +52,13 @@ HTTP 요청
 
 `main()` 실행 → Spring Boot가 Bean을 만들고 서로 연결(DI)한 뒤 → 내장 Tomcat(8080)과 H2 DB를 띄우는 흐름.
 
-- [ ] 이 기능의 목적(애플리케이션을 띄우고 모든 객체를 준비하는 것)을 설명할 수 있다.
-- [ ] 진입점이 `PayrollApplication#main()`임을 찾을 수 있다.
+- [x] 이 기능의 목적(애플리케이션을 띄우고 모든 객체를 준비하는 것)을 설명할 수 있다.
+- [x] 진입점이 `PayrollApplication#main()`임을 찾을 수 있다.
 - [ ] `SpringApplication.run()` → 컴포넌트 스캔 → Bean 생성 → 의존성 주입 → 내장 웹서버 시작 순서를 설명할 수 있다.
 - [ ] `@SpringBootApplication`이 `@Configuration` + `@EnableAutoConfiguration` + `@ComponentScan`을 합친 것임을 설명할 수 있다.
 - [ ] `payroll` 패키지 안의 `@RestController`, `@Component`, `@Configuration`, `@RestControllerAdvice` 클래스가 스캔되어 Bean이 되는 것을 설명할 수 있다.
-- [ ] `EmployeeRepository`는 클래스가 아닌 인터페이스인데도 Bean으로 주입되는 이유(Spring Data JPA가 구현 프록시를 만든다)를 설명할 수 있다.
-- [ ] `EmployeeController(EmployeeRepository repository)` 같은 **생성자 주입**이 `@Autowired` 없이 동작하는 이유(생성자가 1개면 자동 주입)를 설명할 수 있다.
+- [x] `EmployeeRepository`는 클래스가 아닌 인터페이스인데도 Bean으로 주입되는 이유(Spring Data JPA가 구현 프록시를 만든다)를 설명할 수 있다.
+- [x] `EmployeeController(EmployeeRepository repository)` 같은 **생성자 주입**이 `@Autowired` 없이 동작하는 이유(생성자가 1개면 자동 주입)를 설명할 수 있다.
 - [ ] 설정 파일이 없어도 H2 인메모리 DB, 테이블 자동 생성(DDL), Jackson, Tomcat이 준비되는 이유(의존성 + 자동 설정)를 설명할 수 있다.
 - [ ] 코드를 보지 않고 "main 실행부터 요청을 받을 준비가 될 때까지"를 내 말로 설명할 수 있다.
 
@@ -74,20 +74,20 @@ HTTP 요청
 
 앱이 뜬 직후 DB에 샘플 데이터를 넣고 로그를 찍는 흐름.
 
-- [ ] 이 기능의 목적(빈 인메모리 DB에 테스트용 데이터를 채움)을 설명할 수 있다.
-- [ ] 시작 지점이 HTTP 요청이 아니라 `LoadDatabase#initDatabase()`가 등록한 `CommandLineRunner`임을 찾을 수 있다.
+- [x] 이 기능의 목적(빈 인메모리 DB에 테스트용 데이터를 채움)을 설명할 수 있다.
+- [x] 시작 지점이 HTTP 요청이 아니라 `LoadDatabase#initDatabase()`가 등록한 `CommandLineRunner`임을 찾을 수 있다.
 - [ ] 호출 흐름을 설명할 수 있다:
   `SpringApplication.run()` 완료 직전 → Spring이 `CommandLineRunner` Bean의 `run(args)` 호출 → 람다 본문 실행 → `repository.save(new Employee(...))` → INSERT
 - [ ] `@Configuration` + `@Bean` 메서드가 "메서드의 반환값을 Bean으로 등록"한다는 것을 설명할 수 있다.
-- [ ] `@Bean` 메서드의 파라미터(`EmployeeRepository`, `OrderRepository`)가 Spring에 의해 주입된다는 것을 설명할 수 있다.
+- [x] `@Bean` 메서드의 파라미터(`EmployeeRepository`, `OrderRepository`)가 Spring에 의해 주입된다는 것을 설명할 수 있다.
 - [ ] `return args -> { ... };`가 함수형 인터페이스 `CommandLineRunner`를 **람다로 구현**한 것임을 설명할 수 있다.
-- [ ] `save()`가 id가 채워진 엔티티를 반환하므로 로그에 `id=1` 같은 값이 찍힌다는 것을 설명할 수 있다.
+- [x] `save()`가 id가 채워진 엔티티를 반환하므로 로그에 `id=1` 같은 값이 찍힌다는 것을 설명할 수 있다.
 - [ ] SLF4J `Logger`를 `static final`로 두는 이유를 설명할 수 있다.
 - [ ] 모듈별 차이를 설명할 수 있다:
   - `nonrest`/`rest`: `new Employee("Bilbo Baggins", "burglar")` (이름 하나)
   - `evolution`: `new Employee("Bilbo", "Baggins", "burglar")` (성/이름 분리)
   - `links`: Employee 2건 + `Order` 2건(`COMPLETED`, `IN_PROGRESS`), `findAll().forEach(...)`로 로그
-- [ ] 인메모리 DB라서 재시작하면 데이터가 초기화되고 다시 로딩된다는 것을 설명할 수 있다.
+- [x] 인메모리 DB라서 재시작하면 데이터가 초기화되고 다시 로딩된다는 것을 설명할 수 있다.
 - [ ] 코드를 보지 않고 흐름을 내 말로 설명할 수 있다.
 
 ### 관련 코드
@@ -107,7 +107,7 @@ HTTP 요청
 - [ ] `interface EmployeeRepository extends JpaRepository<Employee, Long>` 한 줄로 `findAll`, `findById`, `save`, `deleteById`가 생기는 이유를 설명할 수 있다.
 - [ ] 제네릭 `<Employee, Long>`이 각각 "엔티티 타입"과 "PK 타입"임을 설명할 수 있다.
 - [ ] `@Entity` 클래스가 테이블에, 필드가 컬럼에 매핑되는 것을 설명할 수 있다.
-- [ ] `@Id` + `@GeneratedValue`로 PK를 DB/JPA가 자동 발급하는 것을 설명할 수 있다.
+- [x] `@Id` + `@GeneratedValue`로 PK를 DB/JPA가 자동 발급하는 것을 설명할 수 있다.
 - [ ] JPA가 **기본 생성자**(`Employee() {}`)를 요구하는 이유(리플렉션으로 객체를 먼저 만든 뒤 값을 채움)를 설명할 수 있다.
 - [ ] `save()`가 id가 없으면 INSERT(persist), id가 있으면 UPDATE(merge)로 동작함을 설명할 수 있다.
 - [ ] `findById()`가 `Optional<T>`을 반환하는 이유(없을 수도 있음)를 설명할 수 있다.
@@ -193,7 +193,7 @@ HTTP 요청
 
 ## 7. 직원 생성 — `POST /employees`
 
-- [ ] 이 기능의 목적(요청 JSON으로 새 직원 저장)을 설명할 수 있다.
+- [x] 이 기능의 목적(요청 JSON으로 새 직원 저장)을 설명할 수 있다.
 - [ ] 진입 지점 `@PostMapping("/employees")` → `EmployeeController#newEmployee(@RequestBody Employee)`를 찾을 수 있다.
 - [ ] `@RequestBody`가 요청 JSON을 Jackson으로 `Employee` 객체로 **역직렬화**(기본 생성자 호출 → setter로 값 채움)하는 것을 설명할 수 있다.
 - [ ] 호출 흐름을 모듈별로 설명할 수 있다:
@@ -201,7 +201,7 @@ HTTP 요청
   - `evolution`/`links`: `save()` → `assembler.toModel(saved)` → `ResponseEntity.created(self 링크 URI).body(entityModel)` (201 Created + `Location` 헤더)
 - [ ] `entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()`로 새로 만들어진 리소스 주소를 얻는 과정을 설명할 수 있다.
 - [ ] `ResponseEntity<?>`의 와일드카드 제네릭 `?`의 의미를 설명할 수 있다.
-- [ ] 데이터 흐름: 요청 JSON → `Employee`(id 없음) → `save()` → `Employee`(id 있음) → `EntityModel<Employee>` → 응답 JSON
+- [x] 데이터 흐름: 요청 JSON → `Employee`(id 없음) → `save()` → `Employee`(id 있음) → `EntityModel<Employee>` → 응답 JSON
 - [ ] 코드를 보지 않고 전체 흐름을 내 말로 설명할 수 있다.
 
 ### 관련 코드
@@ -215,14 +215,14 @@ HTTP 요청
 
 ## 8. 직원 수정(없으면 생성) — `PUT /employees/{id}`
 
-- [ ] 이 기능의 목적(id의 직원을 요청 내용으로 교체, 없으면 새로 생성 = upsert)을 설명할 수 있다.
+- [x] 이 기능의 목적(id의 직원을 요청 내용으로 교체, 없으면 새로 생성 = upsert)을 설명할 수 있다.
 - [ ] 진입 지점 `@PutMapping("/employees/{id}")` → `EmployeeController#replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id)`를 찾을 수 있다.
-- [ ] 호출 흐름을 설명할 수 있다:
+- [x] 호출 흐름을 설명할 수 있다:
   `findById(id)` → `Optional<Employee>`
   → 있음: `.map(employee -> { setName, setRole; return save(employee); })` → UPDATE
   → 없음: `.orElseGet(() -> save(newEmployee))` → INSERT
 - [ ] `Optional#map`과 `Optional#orElseGet`의 차이(`orElse`와 달리 없을 때만 람다 실행)를 설명할 수 있다.
-- [ ] **주의점**을 설명할 수 있다: "없음" 분기에서는 URL의 `id`가 `newEmployee`에 설정되지 않으므로 **새 id가 자동 발급**된다 (즉, `PUT /employees/99`로 만든 직원의 id는 99가 아니다).
+- [x] **주의점**을 설명할 수 있다: "없음" 분기에서는 URL의 `id`가 `newEmployee`에 설정되지 않으므로 **새 id가 자동 발급**된다 (즉, `PUT /employees/99`로 만든 직원의 id는 99가 아니다).
 - [ ] `evolution`/`links`에서 `employee.setName(newEmployee.getName())`이 `"First Last"`를 공백 기준으로 쪼개 `firstName`/`lastName`에 넣는다는 것을 설명할 수 있다 (10번 참고).
 - [ ] 최종 응답 모듈별 차이:
   - `nonrest`/`rest`: 저장된 `Employee` JSON (200)
@@ -239,10 +239,10 @@ HTTP 요청
 
 ## 9. 직원 삭제 — `DELETE /employees/{id}`
 
-- [ ] 이 기능의 목적을 설명할 수 있다.
+- [x] 이 기능의 목적을 설명할 수 있다.
 - [ ] 진입 지점 `@DeleteMapping("/employees/{id}")` → `EmployeeController#deleteEmployee(Long)`을 찾을 수 있다.
-- [ ] 호출 흐름: `deleteEmployee(id)` → `repository.deleteById(id)` → DELETE SQL
-- [ ] 없는 id를 지워도 예외가 나지 않는다는 것(Spring Data JPA 3.x의 `deleteById`는 없으면 조용히 무시)을 설명할 수 있다.
+- [x] 호출 흐름: `deleteEmployee(id)` → `repository.deleteById(id)` → DELETE SQL
+- [x] 없는 id를 지워도 예외가 나지 않는다는 것(Spring Data JPA 3.x의 `deleteById`는 없으면 조용히 무시)을 설명할 수 있다.
 - [ ] 최종 응답 모듈별 차이:
   - `nonrest`/`rest`: 반환 타입 `void` → **200 OK**, 빈 본문
   - `evolution`/`links`: `ResponseEntity.noContent().build()` → **204 No Content**
@@ -259,15 +259,15 @@ HTTP 요청
 
 응답 데이터에 "다음에 갈 수 있는 URL"을 함께 넣어주는 기능. 조회/생성/수정 응답 모두에 쓰인다.
 
-- [ ] 이 기능의 목적(클라이언트가 URL을 하드코딩하지 않고 응답의 링크를 따라가게 함 = REST의 HATEOAS 원칙)을 설명할 수 있다.
-- [ ] `EntityModel.of(데이터, 링크...)`가 엔티티를 링크와 함께 감싸는 **래퍼**라는 것을 설명할 수 있다.
+- [x] 이 기능의 목적(클라이언트가 URL을 하드코딩하지 않고 응답의 링크를 따라가게 함 = REST의 HATEOAS 원칙)을 설명할 수 있다.
+- [x] `EntityModel.of(데이터, 링크...)`가 엔티티를 링크와 함께 감싸는 **래퍼**라는 것을 설명할 수 있다.
 - [ ] `linkTo(methodOn(EmployeeController.class).one(id))`의 동작을 설명할 수 있다:
   `methodOn`이 컨트롤러의 **프록시**를 만들고 → `.one(id)` 호출을 실제로 실행하지 않고 "기록"만 함 → `linkTo`가 그 메서드의 `@GetMapping` 경로와 인자로 `http://localhost:8080/employees/1` URL을 조립
 - [ ] `.withSelfRel()`(rel=`self`)과 `.withRel("employees")`의 차이를 설명할 수 있다.
-- [ ] `rest` 모듈에서 `all()`과 `one()`에 똑같은 링크 생성 코드가 **중복**되는 문제를 찾을 수 있다.
+- [x] `rest` 모듈에서 `all()`과 `one()`에 똑같은 링크 생성 코드가 **중복**되는 문제를 찾을 수 있다.
 - [ ] `evolution`에서 중복을 `EmployeeModelAssembler implements RepresentationModelAssembler<Employee, EntityModel<Employee>>`로 추출하고, `@Component`로 Bean 등록 후 컨트롤러에 **생성자 주입**하는 리팩토링을 설명할 수 있다.
 - [ ] `import static ...WebMvcLinkBuilder.*;`(static import)로 `linkTo`, `methodOn`을 클래스명 없이 쓰는 것을 설명할 수 있다.
-- [ ] 데이터 변환: `Employee` → `EntityModel<Employee>`(+`self`, `employees` 링크) → HAL JSON의 `_links`
+- [x] 데이터 변환: `Employee` → `EntityModel<Employee>`(+`self`, `employees` 링크) → HAL JSON의 `_links`
 - [ ] 코드를 보지 않고 "링크가 어떻게 만들어지는지" 내 말로 설명할 수 있다.
 
 ### 관련 코드
@@ -282,13 +282,13 @@ HTTP 요청
 
 DB 스키마는 바꾸면서 기존 클라이언트(`name` 필드 사용)는 깨지지 않게 하는 흐름.
 
-- [ ] 이 기능의 목적(API를 바꿔도 옛 클라이언트가 계속 동작하도록 유지)을 설명할 수 있다.
+- [x] 이 기능의 목적(API를 바꿔도 옛 클라이언트가 계속 동작하도록 유지)을 설명할 수 있다.
 - [ ] 테이블 컬럼은 `firstName`, `lastName`, `role`인데 JSON에는 `name`도 함께 나오는 이유를 설명할 수 있다:
   Jackson은 **필드가 아니라 getter**(`getName()`, `getFirstName()` ...)를 보고 JSON 속성을 만든다 → `getName()`이 `firstName + " " + lastName`을 계산해 반환 → `"name"` 속성이 생김
-- [ ] 요청 쪽 흐름을 설명할 수 있다: 옛 클라이언트가 `{"name":"Samwise Gamgee"}`를 보내면 Jackson이 `setName()`을 호출 → `split(" ")`으로 나눠 `firstName`, `lastName`에 저장
+- [x] 요청 쪽 흐름을 설명할 수 있다: 옛 클라이언트가 `{"name":"Samwise Gamgee"}`를 보내면 Jackson이 `setName()`을 호출 → `split(" ")`으로 나눠 `firstName`, `lastName`에 저장
 - [ ] JPA는 필드(`@Id`가 필드에 붙음 → 필드 접근 방식)를 기준으로 컬럼을 만들기 때문에 `name` 컬럼은 생기지 않는다는 것을 설명할 수 있다.
-- [ ] **한계**를 설명할 수 있다: `"name":"Gandalf"`처럼 공백이 없으면 `parts[1]`에서 `ArrayIndexOutOfBoundsException` → 500 에러. 세 단어 이상이면 뒷부분이 버려진다.
-- [ ] 응답 예: `{"id":1,"firstName":"Bilbo","lastName":"Baggins","role":"burglar","name":"Bilbo Baggins","_links":{...}}`
+- [x] **한계**를 설명할 수 있다: `"name":"Gandalf"`처럼 공백이 없으면 `parts[1]`에서 `ArrayIndexOutOfBoundsException` 발생 → Jackson이 요청 본문을 읽는 도중 난 예외라 **400 Bad Request** (컨트롤러 메서드는 실행되지 않음). 세 단어 이상이면 뒷부분이 버려진다.
+- [x] 응답 예: `{"id":1,"firstName":"Bilbo","lastName":"Baggins","role":"burglar","name":"Bilbo Baggins","_links":{...}}`
 - [ ] 코드를 보지 않고 전체 흐름을 내 말로 설명할 수 있다.
 
 ### 관련 코드
